@@ -19,6 +19,24 @@ export default {
     // to be accessed via html template
     Header,
     QuestionBox
+  },
+  data() {
+    return {
+      questions: []
+    }
+  },
+  // simmiliar to document ready in jquery
+  mounted: function () {
+    fetch("https://opentdb.com/api.php?amount=10&type=multiple", {
+      method: 'get'
+    })
+      .then((response) => {
+        // must use return first
+        return response.json()
+      })
+      .then((jsonData) => {
+        this.questions = jsonData.results
+      })
   }
 };
 </script>
