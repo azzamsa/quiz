@@ -1,12 +1,20 @@
 <template>
-  <div id="app">
-    <Header />
+<div id="app">
+  <Header />
+
+  <b-container class="bv-example-row">
     <b-row>
       <b-col sm="6" offset="3">
-        <QuestionBox />
+        <!-- pass to child component using v-bind -->
+        <QuestionBox
+          v-if="questions.length"
+          :currentQuestion="questions[index]"
+          :next="next"
+          />
       </b-col>
     </b-row>
-  </div>
+  </b-container>
+</div>
 </template>
 
 <script>
@@ -22,12 +30,18 @@ export default {
   },
   data() {
     return {
-      questions: []
+      questions: [],
+      index: 0
+    }
+  },
+  methods: {
+    next() {
+      this.index++
     }
   },
   // simmiliar to document ready in jquery
   mounted: function () {
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple", {
+    fetch("https://opentdb.com/api.php?amount=10&category=17&type=multiple", {
       method: 'get'
     })
       .then((response) => {
@@ -43,11 +57,11 @@ export default {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
 }
 </style>
