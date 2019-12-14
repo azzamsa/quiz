@@ -8,7 +8,12 @@
           <h1>{{ result }}</h1>
           <h2>{{ star }}</h2>
           <router-link to="/quiz">
-            <b-button variant="primary">Test Me Again</b-button>
+            <b-button
+              variant="primary"
+              @click="resetResult"
+              >
+              Test Me Again
+            </b-button>
           </router-link>
         </b-jumbotron>
       </div>
@@ -19,7 +24,7 @@
 
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -31,6 +36,14 @@ export default {
     ...mapState([
       'result'
     ])
+  },
+  methods: {
+    ...mapActions([
+      'updateResult'
+    ]),
+    resetResult() {
+      this.updateResult(0)
+    }
   },
   mounted() {
     this.star = '🌟 '.repeat((this.result / 10) * 3)
