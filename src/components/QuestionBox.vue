@@ -24,7 +24,6 @@
       variant="primary"
       :disabled="selectedIndex === null || answered"
       :style="[selectedIndex === null || answered ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
-      v-if="questionIndex !== 9"
       >
       Sumbit
     </b-button>
@@ -40,18 +39,13 @@
 
     <router-link to="/result">
       <b-button
-        variant="primary"
+        variant="success"
         v-if="questionIndex === 9"
         >
         Show My Result
       </b-button>
     </router-link>
 
-    <p class="question-status"
-       v-if="questionIndex === 9"
-       >
-      No more question 🎉
-    </p>
   </b-jumbotron>
 </div>
 </template>
