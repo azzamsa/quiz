@@ -5,9 +5,9 @@
     :numTotal="numTotal"
     />
 
-  <b-container class="bv-example-row">
-    <b-row>
-      <b-col sm="6" offset="3">
+  <b-container>
+    <b-row class="justify-content-md-center">
+      <b-col sm="6">
         <!-- pass to child component using v-bind -->
         <QuestionBox
           v-if="questions.length"
