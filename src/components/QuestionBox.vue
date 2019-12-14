@@ -27,7 +27,14 @@
       >
       Sumbit
     </b-button>
-    <b-button @click="next" variant="success" href="#">Next</b-button>
+    <b-button
+      @click="next"
+      variant="success"
+      :disabled="questionIndex === 9"
+      :style="[questionIndex === 9 ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
+      >
+      Next
+    </b-button>
   </b-jumbotron>
 </div>
 </template>
@@ -41,7 +48,8 @@ export default {
     // this is local to this component
     currentQuestion: Object,
     next: Function,
-    increment: Function
+    increment: Function,
+    questionIndex: Number
   },
   data() {
     return {
