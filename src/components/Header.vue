@@ -2,7 +2,7 @@
   <div>
     <b-nav tabs>
       <b-nav-item disabled>Azra Quiz App</b-nav-item>
-      <b-nav-item disabled>Counter: {{ numCorrect }}/{{ numTotal }}</b-nav-item>
+      <b-nav-item disabled>Result: {{ numCorrect }}/{{ numTotal }}</b-nav-item>
     </b-nav>
   </div>
 </template>
