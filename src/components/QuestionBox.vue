@@ -19,7 +19,14 @@
         </b-list-group-item>
     </b-list-group>
 
-    <b-button @click="submitAnswer" variant="primary">Sumbit</b-button>
+    <b-button
+      @click="submitAnswer"
+      variant="primary"
+      :disabled="selectedIndex === null"
+      :style="[selectedIndex === null ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
+      >
+      Sumbit
+    </b-button>
     <b-button @click="next" variant="success" href="#">Next</b-button>
   </b-jumbotron>
 </div>
