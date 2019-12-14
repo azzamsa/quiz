@@ -1,17 +1,18 @@
 <template>
-  <b-container>
-    <b-row class="justify-content-md-center">
-      <b-col sm="6">
-        <div class="welcome">
-          <b-jumbotron header="Azra Quiz" lead="Let's test your general knowledge.">
-            <router-link to="/quiz">
-              <b-button variant="primary">Start Quiz</b-button>
-            </router-link>
-          </b-jumbotron>
-        </div>
-      </b-col>
-    </b-row>
-  </b-container>
+<b-container>
+  <b-row class="justify-content-md-center">
+    <b-col sm="6">
+      <div class="welcome">
+        <b-jumbotron header="Azra Quiz" lead="">
+          <p>Test your general knowledge with 10 questions.</p>
+          <router-link to="/quiz">
+            <b-button variant="primary">Start Quiz</b-button>
+          </router-link>
+        </b-jumbotron>
+      </div>
+    </b-col>
+  </b-row>
+</b-container>
 </template>
 
 <style scoped>
