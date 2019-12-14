@@ -35,6 +35,11 @@
       >
       Next
     </b-button>
+    <p class="question-status"
+       v-if="questionIndex === 9"
+       >
+      No more question 🎉
+    </p>
   </b-jumbotron>
 </div>
 </template>
@@ -147,6 +152,10 @@ export default {
 
 .incorrect {
     background-color: #ff8080;
+}
+
+.question-status {
+    margin-top: 10px;
 }
 
 </style>
