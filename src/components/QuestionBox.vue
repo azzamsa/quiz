@@ -13,7 +13,7 @@
         v-for="(answer, index) in answers"
         :key="index"
         @click="selectedAnswer(index)"
-        :class="[selectedIndex === index ? 'selected' : '']"
+        :class="answerClass(index)"
         >
         {{ answer }}
         </b-list-group-item>
@@ -22,8 +22,8 @@
     <b-button
       @click="submitAnswer"
       variant="primary"
-      :disabled="selectedIndex === null"
-      :style="[selectedIndex === null ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
+      :disabled="selectedIndex === null || answered"
+      :style="[selectedIndex === null || answered ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
       >
       Sumbit
     </b-button>
@@ -46,7 +46,9 @@ export default {
   data() {
     return {
       selectedIndex: null,
-      shuffledAnswers: []
+      shuffledAnswers: [],
+      answered: false,
+      correctIndex: null
     }
   },
   computed: {
@@ -67,6 +69,7 @@ export default {
       immediate: true,
       handler() {
         this.selectedIndex = null
+        this.answered = false
         this.shuffleAnswers()
       }
     }
@@ -79,6 +82,7 @@ export default {
       // ... is vue convention to make array flat
       let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
       this.shuffledAnswers = _.shuffle(answers)
+      this.correctIndex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
     },
     submitAnswer() {
       let isCorrect = false
@@ -86,8 +90,25 @@ export default {
       if (this.selectedIndex === this.correctIndex){
         isCorrect = true
       }
+      this.answered = true
 
       this.increment(isCorrect)
+    },
+    answerClass(index) {
+      let answerClass = ''
+
+      if (!this.answered && this.selectedIndex === index) {
+        answerClass = 'selected'
+      } else if (this.answered && this.correctIndex === index) {
+        answerClass = 'correct'
+      } else if (this.answered &&
+                 this.selectedIndex === index &&
+                 this.correctIndex !== index
+                ) {
+        answerClass = 'incorrect'
+      }
+
+      return answerClass
     }
   }
 }
@@ -117,7 +138,7 @@ export default {
 }
 
 .incorrect {
-    background-color: lightred;
+    background-color: #ff8080;
 }
 
 </style>
