@@ -12,6 +12,8 @@
       <b-list-group-item
         v-for="(answer, index) in answers"
         :key="index"
+        @click="selectedAnswer(index)"
+        :class="[selectedIndex === index ? 'selected' : '']"
         >
         {{ answer }}
         </b-list-group-item>
@@ -24,6 +26,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   props: {
     // in order to receive from parent
@@ -31,11 +35,42 @@ export default {
     currentQuestion: Object,
     next: Function
   },
+  data() {
+    return {
+      selectedIndex: null,
+      shuffledAnswers: []
+    }
+  },
   computed: {
+    // this method is cached by vue. Vue will not recompute up until the
+    // decencies values changed
     answers () {
       let answers = [...this.currentQuestion.incorrect_answers]
       answers.push(this.currentQuestion.correct_answer)
       return answers
+    }
+  },
+  // same as method & computed: take object of functions
+  // watch for changes in props, and run when it's changed
+  watch: {
+    // use currentquestion as object, to make use of
+    // watch parameter. `immediate: true` act the same as mounted
+    currentQuestion: {
+      immediate: true,
+      handler() {
+        this.selectedIndex = null
+        this.shuffleAnswers()
+      }
+    }
+  },
+  methods: {
+    selectedAnswer(index) {
+      this.selectedIndex = index
+    },
+    shuffleAnswers() {
+      // ... is vue convention to make array flat
+      let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
+      this.shuffledAnswers = _.shuffle(answers)
     }
   }
 }
@@ -46,7 +81,26 @@ export default {
     margin-bottom: 15px;
 }
 
+.list-group-item:hover {
+    background: lightgray;
+    cursor: pointer;
+}
+
 .btn {
     margin: 0 5px;
 }
+
+/* give user feedback of selected answer */
+.selected {
+    background-color: lightblue;
+}
+
+.correct {
+    background-color: lightgreen;
+}
+
+.incorrect {
+    background-color: lightred;
+}
+
 </style>
