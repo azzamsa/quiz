@@ -16,7 +16,7 @@
         :class="answerClass(index)"
         v-html="answer"
         >
-        </b-list-group-item>
+      </b-list-group-item>
     </b-list-group>
 
     <b-button
@@ -24,6 +24,7 @@
       variant="primary"
       :disabled="selectedIndex === null || answered"
       :style="[selectedIndex === null || answered ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
+      v-if="questionIndex !== 9"
       >
       Sumbit
     </b-button>
@@ -32,9 +33,20 @@
       variant="success"
       :disabled="questionIndex === 9"
       :style="[questionIndex === 9 ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
+      v-if="questionIndex !== 9"
       >
       Next
     </b-button>
+
+    <router-link to="/result">
+      <b-button
+        variant="primary"
+        v-if="questionIndex === 9"
+        >
+        Show My Result
+      </b-button>
+    </router-link>
+
     <p class="question-status"
        v-if="questionIndex === 9"
        >
