@@ -49,7 +49,6 @@ export default {
       if (isCorrect) {
         this.numCorrect++
       }
-      this.numTotal++
     }
   },
   // simmiliar to document ready in jquery
@@ -63,6 +62,7 @@ export default {
       })
       .then((jsonData) => {
         this.questions = jsonData.results
+        this.numTotal = jsonData.results.length
       })
   }
 };
