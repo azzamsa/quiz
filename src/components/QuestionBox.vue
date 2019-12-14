@@ -1,9 +1,9 @@
 <template>
 <div class="question-box-container">
-   <b-jumbotron>
-     <template slot:lead>
-       <!-- passed from parent component -->
-      {{ currentQuestion.question }}
+  <b-jumbotron>
+    <template slot:lead>
+      <!-- passed from parent component -->
+      <h4 v-html="currentQuestion.question"></h4>
     </template>
 
     <hr class="my-4">
@@ -14,8 +14,8 @@
         :key="index"
         @click="selectedAnswer(index)"
         :class="answerClass(index)"
+        v-html="answer"
         >
-        {{ answer }}
         </b-list-group-item>
     </b-list-group>
 
