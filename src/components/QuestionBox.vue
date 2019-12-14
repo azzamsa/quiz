@@ -19,7 +19,7 @@
         </b-list-group-item>
     </b-list-group>
 
-    <b-button variant="primary" href="#">Submit</b-button>
+    <b-button @click="submitAnswer" variant="primary">Sumbit</b-button>
     <b-button @click="next" variant="success" href="#">Next</b-button>
   </b-jumbotron>
 </div>
@@ -33,7 +33,8 @@ export default {
     // in order to receive from parent
     // this is local to this component
     currentQuestion: Object,
-    next: Function
+    next: Function,
+    increment: Function
   },
   data() {
     return {
@@ -71,6 +72,15 @@ export default {
       // ... is vue convention to make array flat
       let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
       this.shuffledAnswers = _.shuffle(answers)
+    },
+    submitAnswer() {
+      let isCorrect = false
+
+      if (this.selectedIndex === this.correctIndex){
+        isCorrect = true
+      }
+
+      this.increment(isCorrect)
     }
   }
 }
