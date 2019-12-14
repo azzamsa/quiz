@@ -16,6 +16,15 @@
           :increment="increment"
           :questionIndex="index"
           />
+        <div class="loading-spinner">
+          <HalfCircleSpinner
+            v-if="!questions.length"
+            :animation-duration="1000"
+            :size="60"
+            :color="'#b3ffd9'"
+            />
+        </div>
+          <h3 class="loading-text" v-if="!questions.length">Fetching questions...</h3>
       </b-col>
     </b-row>
   </b-container>
@@ -23,6 +32,8 @@
 </template>
 
 <script>
+import {HalfCircleSpinner} from 'epic-spinners'
+
 import Header from "@/components/Header.vue";
 import QuestionBox from "@/components/QuestionBox.vue";
 import { mapActions } from 'vuex'
@@ -32,7 +43,8 @@ export default {
   components: {
     // to be accessed via html template
     Header,
-    QuestionBox
+    QuestionBox,
+    HalfCircleSpinner
   },
   data() {
     return {
@@ -79,4 +91,15 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.loading-spinner {
+    margin-left: 140px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.loading-text {
+    text-align: center;
+}
+
 </style>
