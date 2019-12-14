@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <b-nav tabs>
-      <b-nav-item disabled>Azra Quiz App</b-nav-item>
-      <b-nav-item disabled>Result: {{ numCorrect }}/{{ numTotal }}</b-nav-item>
-    </b-nav>
-  </div>
+<div class="main-nav">
+  <b-nav class="navbar navbar-expand-sm bg-light">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+
+      <a class="navbar-brand">Azra Quiz</a>
+       <b-nav-item disabled>Result: {{ numCorrect }}/{{ numTotal }}</b-nav-item>
+
+    </div>
+  </b-nav>
+</div>
 </template>
 
 <script>
@@ -17,3 +21,11 @@ export default {
   ]
 }
 </script>
+
+<style>
+
+.main-nav {
+     margin-bottom: 10px;
+}
+
+</style>
