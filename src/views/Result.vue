@@ -5,7 +5,7 @@
       <div class="welcome">
         <b-jumbotron header="" lead="">
           <p id="result-text">Your Result:</p>
-          <h1>10</h1>
+          <h1>{{ result }}</h1>
           <h2>{{ star }}</h2>
           <router-link to="/quiz">
             <b-button variant="primary">Test Me Again</b-button>
@@ -19,17 +19,21 @@
 
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  props: {
-    result: Number,
-  },
   data() {
     return {
       star: ''
     }
   },
+  computed: {
+    ...mapState([
+      'result'
+    ])
+  },
   mounted() {
-    this.star = '🌟 '.repeat((1 / 10) * 3)
+    this.star = '🌟 '.repeat((this.result / 10) * 3)
   }
 }
 </script>

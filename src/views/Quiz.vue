@@ -25,6 +25,7 @@
 <script>
 import Header from "@/components/Header.vue";
 import QuestionBox from "@/components/QuestionBox.vue";
+import { mapActions } from 'vuex'
 
 export default {
   name: "app",
@@ -42,12 +43,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'updateResult'
+    ]),
     next() {
       this.index++
     },
     increment(isCorrect){
       if (isCorrect) {
         this.numCorrect++
+        this.updateResult(this.numCorrect)
       }
     }
   },
