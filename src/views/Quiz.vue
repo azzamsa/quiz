@@ -16,7 +16,7 @@
           :increment="increment"
           :questionIndex="index"
           />
-        <div class="loading-spinner">
+        <div class="loading-spinner d-flex justify-content-center">
           <HalfCircleSpinner
             v-if="!questions.length"
             :animation-duration="1000"
@@ -93,9 +93,8 @@ export default {
 }
 
 .loading-spinner {
-    margin-left: 140px;
-    margin-top: 100px;
-    margin-bottom: 10px;
+    margin-top: 90px;
+    margin-bottom: 20px;
 }
 
 .loading-text {
