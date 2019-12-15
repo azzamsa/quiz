@@ -25,7 +25,7 @@
       :disabled="selectedIndex === null || answered"
       :style="[selectedIndex === null || answered ? {'cursor': 'not-allowed', 'pointer-events': 'all !important' } : {} ]"
       >
-      Sumbit
+      Submit
     </b-button>
     <b-button
       @click="next"
