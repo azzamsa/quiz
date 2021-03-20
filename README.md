@@ -1,6 +1,7 @@
 # Quiz
 
 Simple quiz application.
+Built with Vue.js
 
 ### Credits
 
