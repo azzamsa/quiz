@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
+
 # buid
-npm run build
+yarn run build
 
 # commit
 cd dist
@@ -8,6 +10,6 @@ git add -A
 git commit -m 'Deploy'
 
 # push
-git push -f https://github.com/azzamsa/quiz.git master:gh-pages
+git push -f git@github.com:azzamsa/quiz-vue.git master:gh-pages
 cd -
 
