@@ -6,7 +6,7 @@
         <b-jumbotron header="Azra Quiz" lead="">
           <p>Test your general knowledge with 10 questions.</p>
           <router-link to="/quiz">
-            <b-button variant="primary">Start Quiz</b-button>
+            <b-button variant="primary">Start Quiz 🎲</b-button>
           </router-link>
         </b-jumbotron>
       </div>
